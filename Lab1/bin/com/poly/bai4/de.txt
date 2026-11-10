@@ -1,0 +1,32 @@
+Xây dựng hệ thống quản lý đơn hàng vận chuyển gồm 3 loại đơn: đơn thường, đơn hỏa tốc, đơn quốc tế.
+
+1. Lớp Order (lớp cơ sở)
+Thuộc tính (private): orderId, customerName, baseFee
+Constructor đầy đủ tham số
+Getter/Setter có validate:
+orderId không rỗng
+customerName không rỗng
+baseFee >= 0
+
+Method:
+double shippingCost() → mặc định trả về baseFee
+toString() → hiển thị đầy đủ thông tin và shippingCost()
+
+2. Lớp ExpressOrder extends Order (đơn hỏa tốc)
+Thêm (private): expressSurcharge (phụ phí hỏa tốc, >= 0), insuranceFee (phí bảo hiểm, >= 0)
+Override shippingCost():
+
+> shippingCost = baseFee + expressSurcharge + insuranceFee
+Override toString()
+
+3. Lớp InternationalOrder extends Order (đơn quốc tế)
+Thêm (private): weightKg (khối lượng kg, >= 0), customsFee (phí hải quan, >= 0)
+Override shippingCost():
+> shippingCost = baseFee + weightKg * 20_000 + customsFee
+(20.000 VNĐ là đơn giá vận chuyển mỗi kg, dùng hằng số trong công thức)
+Override toString()
+
+4. Lớp Main
+Tạo tối thiểu 5 đơn hàng, trong đó ít nhất 2 ExpressOrder và ít nhất 2 InternationalOrder
+In danh sách đơn hàng kèm chi phí vận chuyển của từng đơn
+Tìm và in ra đơn hàng có shippingCost() cao nhất
